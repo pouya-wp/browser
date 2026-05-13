@@ -1,0 +1,17 @@
+
+name: Keep Browser Alive
+
+on:
+  schedule:
+    - cron: '*/25 * * * *'  # هر ۲۵ دقیقه
+  workflow_dispatch:
+
+jobs:
+  keep_alive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Codespace
+        run: |
+          echo "🔄 Keeping codespace alive..."
+          echo "Current time: $(date)"
+          echo "This prevents the codespace from sleeping"
