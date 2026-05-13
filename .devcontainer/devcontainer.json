@@ -1,0 +1,43 @@
+{
+  "name": "Remote Browser - Unfiltered",
+  
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/desktop-lite:1": {
+      "version": "latest",
+      "password": "browser123",
+      "webPort": "6080",
+      "vncPort": "5901"
+    }
+  },
+  
+  "forwardPorts": [6080, 8080],
+  
+  "portsAttributes": {
+    "6080": {
+      "label": "🌐 Remote Browser",
+      "onAutoForward": "openBrowser",
+      "visibility": "public"
+    },
+    "8080": {
+      "label": "🔄 Alternative Port",
+      "onAutoForward": "notify"
+    }
+  },
+  
+  "postCreateCommand": "bash /workspaces/${PWD##*/}/setup.sh",
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.live-server"
+      ]
+    }
+  },
+  
+  "containerEnv": {
+    "DISPLAY": ":1",
+    "VNC_PW": "browser123"
+  }
+}
